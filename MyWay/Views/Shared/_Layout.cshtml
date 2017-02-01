@@ -1,0 +1,398 @@
+﻿@using Mldel
+@{
+    var isLogin = (Mldel.User.SessionInfo)Session["sessionInfo"] == null ? false : true;
+    int userId = 0;
+    if (isLogin) {
+        userId = ((Mldel.User.SessionInfo)Session["sessionInfo"]).userModel.Id;
+    }
+}
+
+<!--mvc3 razor中js文件引用viewData的方法 -->
+@*@section Head{
+    @if (ViewBag.aa != null)
+    {
+        Response.Write(@"<script type=""text/javascript"">");
+        Response.Write("var datas = " + ViewBag.aa + ";");
+        Response.Write("</script>");
+    }
+    
+    <script src="@Url.Content("~/Content/js/datas.js")"></script>
+
+}*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="toTop" content="true">
+    <meta name="description" content="www.chenjinwei.com"/>
+    <title>MyWay</title>
+    <link href="wei.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/Content/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/Content/bootstrap-3.3.5-dist/jquery1.9.js"></script>
+    <script src="/Content/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="/Content/layer-v2.1/layer/layer.js"></script>
+    <script src="/Content/layer-v2.1/layer/extend/layer.ext.js"></script>
+    <script src="/Content/js/public.js"></script>
+    <script src="/Content/js/index.js"></script>
+    <script src="/Content/js/baidutongji.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UqrGY8Gd5570LDCgG9NHttyu"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+    <style>
+        #toTop {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            right: 310px;
+            position: fixed;
+            cursor: pointer;
+            z-index: 999999;
+        }
+        .big a {
+            color: #808080;
+            margin: 5px;
+        }
+        a:hover{
+         text-decoration:none;   
+         color:#f00;
+        }
+
+      
+
+        .cloud ul li {
+            line-height: 24px;
+            height: 24px;
+            display: block;
+            background: #999;
+            float: left;
+            padding: 1px 11px;
+            margin: 10px 10px 0 0;
+            border-radius: 8px;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+            .cloud ul li a {
+                color: #FFF;
+            }
+
+            .cloud ul li:nth-child(8n-7) {
+                background: #8A9B0F;
+            }
+
+            .cloud ul li:nth-child(8n-6) {
+                background: #EB6841;
+            }
+
+            .cloud ul li:nth-child(8n-5) {
+                background: #3FB8AF;
+            }
+
+            .cloud ul li:nth-child(8n-4) {
+                background: #FE4365;
+            }
+
+            .cloud ul li:nth-child(8n-3) {
+                background: #FC9D9A;
+            }
+
+            .cloud ul li:nth-child(8n-2) {
+                background: #EDC951;
+            }
+
+            .cloud ul li:nth-child(8n-1) {
+                background: #C8C8A9;
+            }
+
+            .cloud ul li:nth-child(8n) {
+                background: #83AF9B;
+            }
+
+            .cloud ul li:first-child {
+                background: #036564;
+            }
+
+            .cloud ul li:last-child {
+                background: #3299BB;
+            }
+
+            .cloud ul li:hover {
+                border-radius: 0;
+            }
+
+
+            #h1{
+  text-align:center;
+  font-size:7em;
+  margin:20px 0 20px 0;
+}
+a{
+  text-decoration:none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+/*#h1 a{
+  font-size:1.5em;
+  color:#228DFF;
+  font-family:Iceland;
+}
+#h1 a:hover{
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}*/
+
+    </style>
+    <script>
+        var isLogin = "@isLogin";
+        var userId = "@userId";
+        $(function () {
+            if ($("meta[name=toTop]").attr("content") == "true") {
+                //$("<div id='toTop'><img src='/images/totop.png' data-toggle='tooltip' title='返 回 顶 部' /></div>").appendTo('body');
+                //$("#toTop").css({
+                //    width: '50px',
+                //    height: '50px',
+                //    bottom: '10px',
+                //    right: '310px',
+                //    position: 'fixed',
+                //    cursor: 'pointer',
+                //    zIndex: '999999',
+                //});
+                if ($(this).scrollTop() == 0) {
+                    $("#toTop").hide();
+                }
+                $(window).scroll(function (event) {
+                    /* Act on the event */
+                    if ($(this).scrollTop() == 0) {
+                        $("#toTop").hide();
+                    }
+                    if ($(this).scrollTop() != 0) {
+                        $("#toTop").show();
+                    }
+                });
+                $("#toTop").click(function (event) {
+                    /* Act on the event */
+                    $("html,body").animate({
+                        scrollTop: "0px"
+                    },
+                        666
+                        )
+                });
+            }
+
+            $('[data-toggle="tooltip"]').tooltip();
+           
+        });
+   
+    </script>
+</head>
+<body style="background: #fff; ">
+    <div id='toTop' style="display:none;"><img src='/images/totop.png' data-toggle='tooltip' title='返 回 顶 部' /></div>
+    <br />
+    <div class="container" style="background:#fff;">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin:0px;">
+                @*<audio autoplay="autopaly" loop="loop" id="mp3">
+                    <source src="~/July.mp3" type="audio/mp3" />
+                </audio>*@
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/">MyWay</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">关于<span class="sr-only"></span></a></li>
+                                <li><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">更多<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @*<li><a href="/home/edit">新增文章</a></li>*@
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <form id="sousuofrom" class="navbar-form navbar-left" onsubmit="return SouSuo()" action="/home/sousuopage">
+                                <div class="form-group">
+                                    <input type="text" id="shouyesousuo" name="sousuo" class="form-control" placeholder="输入搜索内容">
+                                </div>
+                                <button type="submit" class="btn btn-default" id="search">搜索</button>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a class="btn" id="play" title="暂停歌曲" onclick="Play()"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></a></li>
+                                @if ((Mldel.User.SessionInfo)Session["sessionInfo"] == null)
+                                {
+                                    <li id="denglu"><a href="#exampleModal" role="dialog" data-toggle="modal">登录</a></li>
+                                    <li id="zhuce"><a href="#reg" role="dialog" data-toggle="modal">注册</a></li>
+                                }
+                                else
+                                {
+                                    <li><a>欢迎您：</a></li>
+                                    <li id="denglu"><a href="#" style="color: #F2FF47;">@(((Mldel.User.SessionInfo)Session["sessionInfo"]).userModel.UserName)</a></li>
+                                    <li id="zhuce"><a href="#" onclick="LoginOut()">退出</a></li>
+                                }
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+        </div>
+        
+                @RenderBody()
+            <br />
+
+            <div class="row">
+                <div class="col-lg-12" style="padding:0px;margin:0px;width:auto;">
+                    <img src="/images/Lighthouse.jpg" class="img-responsive"/>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12" style="padding:0px;margin:0px;">
+                    <div style="background: #eee;">
+                        <h4 style="margin:3px;">友情链接</h4>
+                    </div>
+                    <ul class="list-unstyled list-group-item list-inline" style="margin-left: 1px;"><li><a target="_blank" href="http://mobile.51cto.com/">51CTO移动</a></li><li><a target="_blank" href="http://developer.51cto.com/">51CTO开发</a></li><li><a target="_blank" href="http://www.apkbus.com/">安卓开发者社区</a></li><li><a target="_blank" href="http://www.open-open.com/">JAVA开源大全</a></li><li><a target="_blank" href="http://bbs.uc.cn/">UC论坛</a></li><li><a target="_blank" href="http://www.html5cn.org/">HTML5</a></li><li><a target="_blank" href="http://www.appcan.cn/">AppCan</a></li><li><a target="_blank" href="http://www.devstore.cn/">DevStore</a></li><li><a target="_blank" href="http://www.oschina.net/">开源中国社区</a></li><li><a target="_blank" href="http://product.leiphone.com/">数码产品</a></li><li><a target="_blank" href="http://tryout.leiphone.com/">雷锋试用</a></li><li><a target="_blank" href="http://www.hxsd.com/">火星时代</a></li><li><a target="_blank" href="http://www.ltesting.net/">软件测试</a></li><li><a target="_blank" href="http://www.mobanku.com/">模板库</a></li><li><a target="_blank" href="http://www.eoeandroid.com/">eoe开发者社区</a></li><li><a target="_blank" href="http://www.jikexueyuan.com/">极客学院</a></li><li><a target="_blank" href="https://www.teambition.com">teambition</a></li><li><a target="_blank" href="http://www.aTool.org">在线工具</a></li><li><a target="_blank" href="http://bbs.html5cn.org/">HTML5论坛</a></li><li><a target="_blank" href="http://www.maiziedu.com/">Android开发</a></li><li><a target="_blank" href="http://www.zbj.com/ydyykf/">猪八戒网</a></li></ul>
+                </div>
+                <div class="col-lg-12">
+                    <br />
+                    <div class="container text-center">
+                        <p class="big">
+                            <a href="/" target="_blank">关于我们</a>
+                            <a href="/" target="_blank">法律声明</a>
+                            <a href="/" target="_blank">廉正举报</a>
+                            <a href="/" target="_blank">互联网不良信息举报</a>
+                        </p>
+                        <p>
+                            © www.chenjinwei.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16014691号</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label">用户名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="col-sm-2 control-label">密码：</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="pwd" placeholder="密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="isAuto" checked> 记住我
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" onclick="Login()">登录</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal fade" id="reg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">注册</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="regusername" class="col-sm-3 control-label">用户名：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="regusername" placeholder="用户名" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd" class="col-sm-3 control-label">密码：</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="regpwd" placeholder="密码" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd" class="col-sm-3 control-label">确认密码：</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="regpwd1" placeholder="确认密码" value="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" onclick="Reg()">确认注册</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</body>
+</html>
+
+
+<script>
+
+    //主页搜索方法
+    function SouSuo() {
+        var sousuo = $("#shouyesousuo").val();
+        if (sousuo.length == 0) {
+            layer.msg("请输入搜索内容", { icon: 6 });
+            return false;
+        }
+    }
+
+</script>

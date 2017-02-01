@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "文章列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var typeId = "@ViewBag.typeId";
+</script>
+<script src="~/Content/js/ContentList.js"></script>
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li class="active">资讯中心</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-xs-8" style="border:1px solid #eee;">
+        <div class="row" style="background: #e4e4e4;border-bottom:1px solid #808080;">
+            <p style="padding:10px;margin-bottom:0px;font-size:18px;font-weight:bold;">资讯中心</p>
+        </div>
+        <div class="row">
+            <div id="pageList">
+
+            </div>
+            <div class="row">
+                <nav class="text-center">
+                    <ul class="pagination" id="page" style="margin-bottom: 0px;">
+                    </ul>
+                </nav>
+                <div class="text-center" id="tiaozhuan" style="padding:5px;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4" style="border:1px solid #eee;">
+        <div class="row" style="background: #e4e4e4; border-bottom: 1px solid #808080; ">
+            <p style="padding: 10px; margin-bottom: 0px; font-size: 18px; font-weight: bold;">标签云</p>
+        </div>
+        <div class="row cloud" style="padding-bottom: 10px;">
+            <ul id="biaoqianyun">
+                
+            </ul>
+        </div>
+    </div>
+</div>

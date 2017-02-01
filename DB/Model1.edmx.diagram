@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1343e284656b404fbc7f91fe6efa25d4" Name="Diagram1">
+        <EntityTypeShape EntityType="qds105749277_dbModel.AdminUser" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.Comment" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.Content" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.HuiFu" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.Label" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.Type" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.Users" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="qds105749277_dbModel.ZhiChiFanDui" Width="1.5" PointX="7.75" PointY="4.75" />
+        <AssociationConnector Association="qds105749277_dbModel.FK_Comment_Comment" />
+        <AssociationConnector Association="qds105749277_dbModel.FK_Comment_Content" />
+        <AssociationConnector Association="qds105749277_dbModel.FK_Content_Label" />
+        <AssociationConnector Association="qds105749277_dbModel.FK_Content_Type" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

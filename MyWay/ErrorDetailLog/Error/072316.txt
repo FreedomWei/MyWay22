@@ -1,0 +1,47 @@
+
+
+-------------------------------------------------------------------------
+2016.05.07 23:16:22
+.客户：
+url1:http://localhost:3163/m/home/UpdateLabel
+url2:http://localhost:3163/M/Home/LabelPage
+Ip:::1
+请求类型:ajax请求-XMLHttpRequest
+浏览器:Chrome
+浏览器版本:48
+操作系统:WinNT
+.异常：
+  错误信息>Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+  异常类>System.Data.Entity.Validation.DbEntityValidationException
+  错误源>EntityFramework
+  异常方法>Int32 SaveChanges()
+  堆栈信息>
+   在 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   在 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   在 System.Data.Entity.DbContext.SaveChanges()
+   在 DAL.ContentDAL.UpdateLabel(Int32 id, String name) 位置 E:\ASP.NET_MVCDome\MyWay\DAL\ContentDAL.cs:行号 366
+   在 BLL.ContentBLL.UpdateLabel(Int32 id, String name) 位置 E:\ASP.NET_MVCDome\MyWay\BLL\ContentBLL.cs:行号 245
+   在 MyWay.Areas.Manager.Controllers.HomeController.UpdateLabel() 位置 E:\ASP.NET_MVCDome\MyWay\MyWay\Areas\Manager\Controllers\HomeController.cs:行号 235
+
+-------------------------------------------------------------------------
+2016.05.07 23:16:24
+.客户：
+url1:http://localhost:3163/m/home/UpdateLabel
+url2:http://localhost:3163/M/Home/LabelPage
+Ip:::1
+请求类型:ajax请求-XMLHttpRequest
+浏览器:Chrome
+浏览器版本:48
+操作系统:WinNT
+.异常：
+  错误信息>Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+  异常类>System.Data.Entity.Validation.DbEntityValidationException
+  错误源>EntityFramework
+  异常方法>Int32 SaveChanges()
+  堆栈信息>
+   在 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   在 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   在 System.Data.Entity.DbContext.SaveChanges()
+   在 DAL.ContentDAL.UpdateLabel(Int32 id, String name) 位置 E:\ASP.NET_MVCDome\MyWay\DAL\ContentDAL.cs:行号 366
+   在 BLL.ContentBLL.UpdateLabel(Int32 id, String name) 位置 E:\ASP.NET_MVCDome\MyWay\BLL\ContentBLL.cs:行号 245
+   在 MyWay.Areas.Manager.Controllers.HomeController.UpdateLabel() 位置 E:\ASP.NET_MVCDome\MyWay\MyWay\Areas\Manager\Controllers\HomeController.cs:行号 235

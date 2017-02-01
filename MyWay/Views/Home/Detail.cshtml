@@ -1,0 +1,141 @@
+﻿
+@using Mldel.Content
+@model Mldel.Content.ContentModel
+@{
+    ViewBag.Title = "文章详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="wei.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    
+<script>
+    //文章Id
+    var cid = "@Model.Id";
+</script>
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li><a href="#">资讯中心</a></li>
+        <li class="active">文章</li>
+    </ol>
+</div>
+
+<!--主题内容开始-->
+<div class="row" style="border: 1px solid #faf5f5;">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="border: 1px solid #faf5f5;">
+        <div class="row" id="textimg">
+            <h3 class="text-center">@Model.Title</h3>
+            <div class="text-center" style="border-bottom:1px dotted #808080;">
+                <span style="margin-right: 15px;margin-bottom:10px;">来源：@Model.Author</span>
+                <span style="margin-right: 15px;">发布时间：@Model.CreateTime.ToString("yyyy-MM-dd")</span>
+                <span style="margin-right: 15px;">评论数：<strong style="color:red;">@Model.CommentNum</strong></span>
+                <span>阅读量：@Model.See</span>
+
+            </div>
+            <p>
+                @Html.Raw(Model.Text)
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="border: 1px solid #faf5f5; height: 300px; ">
+        <div class="row" style="background: #F8F8F8;">
+            <h4 style="margin:3px;">标签云</h4>
+        </div>
+        <div class="row cloud">
+            <ul id="biaoqianyun">
+            </ul>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="border: 1px solid #faf5f5; border-radius: 6px;">
+        <div class="row" style="background: #ABABDA;border-radius:6px;text-decoration:none;">
+            <h3 style="margin:3px;">最新评论</h3>
+        </div>
+        <div class="row">
+            <div class="" style="margin-bottom:0px;padding:4px;" id="pinglundiv">
+
+
+                @*<div class="panel panel-success">
+                    <div class="panel-heading">昵称：qqqqqq<span class="pull-right">#53楼</span></div>
+                    <div class="panel-body" id="p_53">
+                        <div class="bs-example" data-example-id="media-list">
+                            <ul class="media-list">
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/" data-holder-rendered="true" style="width: 64px; height: 64px;">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Media heading</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                                         Nested media object 
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/" data-holder-rendered="true" style="width: 64px; height: 64px;">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Nested media heading</h4>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/" data-holder-rendered="true" style="width: 64px; height: 64px;">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Nested media heading</h4>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/" data-holder-rendered="true" style="width: 64px; height: 64px;">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Nested media heading</h4>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        评论时间:<cite>2016-03-31 23:06</cite>
+                        <button type="button" id="FanDuia_52" class="pull-right btn btn-default btn-xs" onclick="FanDui(52)">反对(<strong id="FanDui_52">0</strong>)</button>
+                        <button type="button" id="FanDuia_52" class="pull-right btn btn-default btn-xs" onclick="FanDui(52)">反对(<strong id="FanDui_52">0</strong>)</button>
+                        <a class="pull-right" style="padding-right:10px;" href="javascript:;" onclick="msg()">回复</a>
+                      
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<script src="/Content/js/detail1.js"></script>
+
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="border: 1px solid #faf5f5; border-radius: 6px;">
+        <div class="row" style="background: #ABABDA;border-radius:6px;">
+            <h3 style="margin:3px;">我要评论</h3>
+        </div>
+        <div class="row">
+            <textarea id="pingluntext" maxlength="200" placeholder="填写评论（200字以内）" class="form-control" style="margin:10px;width:97%" rows="4"></textarea>
+            <button onclick="pingluntijiao()" class="form-control pull-left btn-primary" style="margin-left:10px; margin-bottom:10px; width:100px;" id="pingluntijiao">提交</button>
+        </div>
+    </div>
+</div>
+
+

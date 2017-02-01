@@ -1,0 +1,11 @@
+GET /w HTTP/1.1
+Cache-Control: max-age=0
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: Hm_lvt_76a190836f5b589efa6d0ef8f08817b8=1456988320,1457076434,1457403315,1457425633; Hm_lvt_a8ad9ff7b9dd4cbb5510f6a929ba085f=1456988320,1457076434,1457403315,1457425633; bdshare_firstime=1458092770803; login_token=eyJ1c2VyY29kZSI6IjE1MDA1Nzg0NTMxIiwidG9rZW4iOiJua2Z0eDBmOXlwIiwiSXNBY3RpdmUiOnRydWV9; Hm_lvt_e504327e9c84213931864d4ca26f2efe=1458358650,1458697298; ASP.NET_SessionId=xgtm0wioffnkotnsrbgfovpc; Hm_lvt_2011681e6cacb57b2c39a2a0a2c7fcef=1460340584,1460511018,1460685477,1460962131; Hm_lpvt_2011681e6cacb57b2c39a2a0a2c7fcef=1460963417
+Host: localhost:3163
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36
+Upgrade-Insecure-Requests: 1
+

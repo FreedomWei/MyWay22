@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>登录MyWay管理中心</title>
+    <link href="/Content/Manager/css/public.css" rel="stylesheet" />
+    <script src="/Content/bootstrap-3.3.5-dist/jquery1.9.js"></script>
+    <script src="/Content/js/public.js"></script>
+    <script src="/Content/layer-v2.1/layer/layer.js"></script>
+    <script src="/Content/layer-v2.1/layer/extend/layer.ext.js"></script>
+    <script>
+        function LoginManager() {
+            var username = document.getElementsByName("username")[0].value;
+            var pwd = document.getElementsByName("pwd")[0].value;
+
+            if (username.length == 0) {
+                layer.msg("用户名不能为空", { icon: 5 }, function () {
+
+                });
+                return;
+            }
+            if (pwd.length == 0) {
+                layer.msg("密码不能为空", { icon: 5 }, function () {
+
+                });
+                return;
+            }
+            $.post2('/m/home/login', { username: username, pwd: pwd }, function (data) {
+                location.href = '/m/home/index';
+            })
+        }
+    </script>
+    <style type="text/css">
+        .box {
+            width: 100%;
+            padding: 0px 0px;
+        }
+
+        .logobox {
+            width: 580px;
+            margin: 120px auto 0px auto;
+        }
+
+        body {
+            background-color: #FFFFFF;
+        }
+
+        tr {
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="logobox">
+            <!-- 当前位置 -->
+            <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+                <script type="text/javascript">
+                </script>
+                <div class="idTabs">
+                    <ul class="tab">
+                        <li><a href="javascript:;" class="selected">登录管理中心</a></li>
+                    </ul>
+                    <div class="items">
+                        <form id="form2">
+                            <div id="display">
+                                <table style="width:100%;" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                                    <tr style="height: 30px;">
+                                        <th colspan="2">&nbsp;</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" style="width:120px;">用户名</td>
+                                        <td>
+                                            <input type="text" name="username" value="" style="width:260px;" class="inpMain" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">密码</td>
+                                        <td>
+                                            <input type="password" name="pwd" value="" style="width:260px;" class="inpMain" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align:center;">
+                                            <input name="submit" class="btn" type="button" onclick="LoginManager()" value="登录" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dcFooter" style="position: fixed; width: 100%; bottom:0px;">
+            <div id="footer">
+                <div class="line" style="margin-left: 0px;"></div>
+                <ul>
+                    版权所有 © 2016 二维也有限公司，并保留所有权利。
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+  
+</body>
+</html>

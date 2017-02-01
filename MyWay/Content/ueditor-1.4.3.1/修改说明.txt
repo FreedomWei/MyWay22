@@ -1,0 +1,6 @@
+1. 修改文件 D:\牙精灵项目1126\牙精灵\xyhis.com.yajingling.www\static\ueditor-1.4.3.1\dialogs\image\image.js
+   修改位置： function--> initButtons   switch('remote')  第88行
+   修改代码： 操作 = 添加,  remote = true;      
+   修改原因： 远程抓取图片本地处理无效，显示的还是远程图片。修改后远程图片（多图上传 插入图片）输入或粘贴图片url能进入断点  /ss/ueditor  swtich(catchimage)。 能够在后台处理远程图片。
+ 说明：余昭 写于 2015.12.24 。
+             

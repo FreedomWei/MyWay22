@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="wei.ico" rel="shortcut icon" type="image/x-icon" />
+<script src="~/Content/ueditor-1.4.3.1/ueditor.config.js"></script>
+<script src="~/Content/ueditor-1.4.3.1/ueditor.all.min.js"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script src="~/Content/ueditor-1.4.3.1/lang/zh-cn/zh-cn.js"></script>
+
+<script>
+
+    GetType();
+    function GetType() {
+        $.post2('/home/GetTypes', {}, function (data) {
+            var data1 = eval('('+data+')');
+                var html1 = "";
+                for (var i = 0; i < data1.label.length; i++) {
+                    if (i == 0) {
+                        html1 += '<option value="' + data1.label[i].Id + '" selected="selected">' + data1.label[i].LabelName + '</option>';
+                    }
+                    html1 += '<option value="' + data1.label[i].Id + '">' + data1.label[i].LabelName + '</option>';
+                }
+                $('#label').html(html1);
+                var html2 = '';
+                for (var i = 0; i < data1.type.length; i++) {
+                    if (i == 0) {
+                        html2 += '<option value="' + data1.type[i].typeId + '" selected="selected">' + data1.type[i].TypeName + '</option>';
+                    }
+                    html2 += '<option value="' + data1.type[i].typeId + '">' + data1.type[i].TypeName + '</option>';
+                }
+                $('#type').html(html2);
+
+        });
+    }
+
+    //提交数据
+    function PostData() {
+        var title = $("#title").val();
+        var label = $('#label').val();
+        var type = $('#type').val();
+        var author = $('#author').val();
+        var imagepaths = $('#img1').attr('src');
+        var text = UE.getEditor('editor').getContent();
+
+        if (title.length == 0) {
+            layer.msg('标题不能为空', { icon: 5 });
+            return;
+        }
+        if (author.length == 0) {
+            layer.msg('作者不能为空', { icon: 5 });
+            return;
+        }
+        if (text.length == 0) {
+            layer.msg('内容不能为空', { icon: 5 });
+            return;
+        }
+
+        if (type == 1) {
+            if (imagepaths == '/images/default.png') {
+                layer.msg('资讯中心必须上传图片', { icon: 5 });
+                return;
+            }
+        } else {
+            imagepaths = "";
+        }
+        $.post2('/home/PostData', { title: title, label: label, type: type, author: author, text: text, imagepaths: imagepaths }, function (data) {
+            layer.msg(data, {icon:6});
+
+        });
+
+    }
+
+
+
+    //上传图片
+    function openUpImgPage() {
+        var defaultImg = $("#img1").attr("src");
+        var w = 700;
+        var h = 500;
+
+        var url = '/Content/img.html?defaultImg=' + defaultImg + "&w=" + w + "&h=" + h;
+        layerIndex = top.layer.open({
+            type: 2,
+            area: ['700px', '535px'],
+            offset: '70px',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            content: [url, 'no'],
+            title: "修改图片",
+            shift: -1
+        });
+    }
+
+    //子窗口调用方法，设置头像
+    function UpLoad(path, Id) {
+        $("#img1").attr('src',path);
+      
+    }
+
+
+</script>
+
+@*<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li><a href="#">新增文章</a></li>
+        <li class="active">编辑</li>
+    </ol>
+</div>
+
+<div class="row">
+    <h3 class="text-center">新增文章</h3>
+    <div class="col-xs-12">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">标题：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="title" maxlength="30" placeholder="标题">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author" class="col-sm-2 control-label">来源：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="author" maxlength="20" placeholder="作者">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="label" class="col-sm-2 control-label">标签：</label>
+                <div class="col-sm-9">
+                    <select id="label" class="form-control">
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">类型：</label>
+                <div class="col-sm-9">
+                    <select id="type" class="form-control">
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">图片：</label>
+                <div class="col-sm-9">
+                    <img src="/images/default.png" alt="" id="img1" style="width: 150px; vertical-align: bottom; ">
+                        <a href="javascript:;" onclick="openUpImgPage()" class="greenbtn btn btn-default"><span>上传图片</span></a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">内容：</label>
+                <div class="col-sm-9">
+                    <script id="editor" type="text/plain" style="height:500px;"></script>
+                </div>
+            </div>
+       
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="PostData()">保 存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>*@
+
+
+
+
+<script>
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+</script>
