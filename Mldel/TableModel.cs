@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Mldel
 {
     public class TableModel<T> where T : class ,new()
-    {
+    { 
         public TableModel() { }
         public TableModel(bool isReturnLst)
         {
